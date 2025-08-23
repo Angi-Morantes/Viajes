@@ -1,0 +1,44 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+    <div class="contenedor-articu">
+        <h1>Los Mejores Festivales y Eventos Culturales del Mundo</h1>
+        <section class="seccion-articu">
+            <div class="evento">
+                <img src={% static 'img/carnaval-rio.jpeg' %} alt="Carnaval de Río de Janeiro">
+                <div class="info-evento">
+                    <h2>1. Carnaval de Río de Janeiro</h2>
+                    <p>Desfile vibrante y música contagiosa.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/orto.jpeg' %} alt="Oktoberfest">
+                <div class="info-evento">
+                    <h2>2. Oktoberfest</h2>
+                    <p>Fiesta de la cerveza en Múnich, Alemania.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/festiv.jpeg' %} alt="Festival Loy Krathong">
+                <div class="info-evento">
+                    <h2>3. Festival Loy Krathong</h2>
+                    <p>Faroles flotantes en Tailandia.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/tomatina.jpeg' %} alt="La Tomatina">
+                <div class="info-evento">
+                    <h2>4. La Tomatina</h2>
+                    <p>Batalla de tomates en Buñol, España.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/holi-festival.jpeg' %} alt="Holi Festival">
+                <div class="info-evento">
+                    <h2>5. Holi Festival</h2>
+                    <p>Festival de colores en la India.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

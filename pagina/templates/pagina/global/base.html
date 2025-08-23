@@ -1,0 +1,74 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %} <title>Viajes alrededor del mundo</title> {% endblock  %}
+
+    <!-- favicon y CSS-->
+    <link rel="icon" href="/img/icono.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "CSS/style.css" %}">
+    {% block styles %} {% endblock styles %}
+
+    <!-- SEO -->
+    <meta property="og:title" content="Los viajes, una forma de vivir mejor">
+    <meta property="og:descripcion" content="Explora y conoce un poco de algunos lugares turisticos">
+    <meta property="og:image" content={% static 'img/roma2.jpeg' %}>
+    <meta name="description" content="El viaje es la mejor forma de educacion, porque nos educa a ver el mundo desde diferentes perspectivas">
+    <meta name="keywords" content="Viaje, libertad, alegria">
+
+</head>
+    <body>
+        <!--Header-menu-->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Mun<b>VIAJE</b></h1>
+                </div>
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li><a href={% url 'index' %}>Inicio</a></li>
+                            <li><a href={% url 'destinos' %}>Destinos</a></li>
+                            <li><a href={% url 'articulos' %}>Articulos</a></li>
+                            <li><a href={% url 'contacto' %}>Contacto</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    <main>
+    {% block content %} {% endblock content %}
+    </main>
+
+        <footer>
+            <div class="contenedor-footer">
+                <div class="seccion-footer">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href={% url 'index' %}>Inicio</a></li>
+                        <li><a href={% url 'destinos' %}>Destinos</a></li>
+                        <li><a href={% url 'articulos' %}>Articulos</a></li>
+                        <li><a href={% url 'contacto' %}>Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="seccion-footer">
+                    <h3>Destinos Populares</h3>
+                    <ul>
+                        <li><a href={% url 'paris' %}>París</a></li>
+
+                    </ul>
+                </div>
+                <div class="seccion-footer">
+                    <h3>Contacto</h3>
+                    <p>¿Tienes alguna pregunta o comentario? No dudes en contactarnos.</p>
+                    <p>Email:[mun.viajes@gmail.com]</p>
+                </div>
+            </div>
+            <div class="pie-de-pagina">
+                <p>&copy; 2025 [MunViajes]. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </body>
+</html>

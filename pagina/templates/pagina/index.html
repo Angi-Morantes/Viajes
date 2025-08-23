@@ -1,0 +1,12 @@
+{% extends "pagina/global/base.html" %}
+
+{% block content %}
+    <!--portada-->
+    <div class="container-cover">
+        <div class="container-info-cover">
+            <h1>Viajes alrededor del mundo</h1>
+            <p>¡Explora el mundo! Descubre nuevos lugares y culturas</p>
+            <a href={% url 'destinos' %}><button>Ver más</button></a>
+        </div>
+    </div>
+{% endblock content %}

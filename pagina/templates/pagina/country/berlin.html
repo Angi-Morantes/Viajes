@@ -1,0 +1,44 @@
+{% extends "pagina/global/base.html" %}
+{% load static %}
+{% block content %}
+<section class="contenido">
+<div class="bloque">
+    <div class="texto">
+        <h2>¿Por qué visitar Berlín?</h2>
+        <p>La capital alemana tiene una gran historia que contar a sus visitantes. Asolada durante la Segunda Guerra Mundial y dividida por el Muro durante 28 años, Berlín recupera su antiguo esplendor a pasos de gigante.</p>
+</div>
+<div class="imagen">
+    <img src={% static 'img/berlin4.jpg' %} alt="Berlín">
+</div>
+</div>
+<div class="bloque reverse">
+    <div class="imagen">
+    <img src={% static 'img/berlin-img.jpg' %} alt="Muro de Berlín">
+</div>
+<div class="texto">
+    <h2>Historia y cultura</h2>
+    <p>Los rastros del muro forman el mejor de los museos en el que se pueden revivir tiempos de angustia por la división, los campos de concentración exponen sus secretos mejor guardados sobre las consecuencias de un fascismo exacerbado y los búnkeres transmiten el terror que un día mantuvo a la ciudad oculta por el miedo.</p>
+</div>
+</div>
+<div class="bloque">
+<div class="texto">
+    <h2>Actividades y visitas</h2>
+    <p>El turismo en Berlín ofrece un amplio abanico de actividades, visitas y excursiones excitantes que logran que el visitante forme parte de su historia y que le encante.</p>
+    <p>En el Museo de la DDR os adentraréis en el cuadriculado y particular mundo de la República Democrática Alemana; Checkpoint Charlie, escenario de continuas huidas de los ciudadanos del lado Este de Berlín, cuenta su particular historia.</p>
+</div>
+<div class="imagen">
+    <img src={% static 'img/berlin.avif' %} alt="Museo de la DDR">
+</div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/berlin3.jpg' %}alt="Isla de los Museos">
+                </div>
+                <div class="texto">
+                    <h2>Isla de los Museos</h2>
+                    <p>La Isla de los Museos de Berlín ofrece una amplia gama de exposiciones para todos los gustos.</p>
+                </div>
+            </div>
+        </section>
+
+{% endblock content %}

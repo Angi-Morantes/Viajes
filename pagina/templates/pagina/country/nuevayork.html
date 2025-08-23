@@ -1,0 +1,35 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+        <section class="contenido">
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Nueva York, la Ciudad que Nunca Duerme</h2>
+                    <p>Nueva York, o New York como muchos dicen, es una gran ciudad con muchas posibilidades. La ciudad de los rascacielos ha protagonizado películas y novelas que la han convertido en el destino soñado para muchos.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/nuevayork1.jpg' %} alt="Nueva York">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% 'img/nueva-york.avif' %}% alt="Times Square">
+                </div>
+                <div class="texto">
+                    <h2>¿Por qué viajar a Nueva York?</h2>
+                    <p>Nueva York se ha convertido en los últimos años y por méritos propios en la capital económica y cultural más importante del mundo. La ciudad ofrece un ambiente y un estilo de vida único difíciles de explicar en una guía de Nueva York, hay que vivirlo y disfrutarlo.</p>
+                    <p>Asistir a un musical en Broadway, pasar una noche en Times Square, recorrer de un lado a otro el Puente de Brooklyn, disfrutar de una tarde de compras en la Quinta Avenida o sentirte como un broker en Wall Street, son algunas de las cosas que sólo se pueden hacer en Nueva York.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <p>Durante los últimos años, el turismo en Nueva York ha aumentado de forma sorprendente. El precio de los vuelos y el valor del dólar han sido factores decisivos para que Nueva York haya superado como destino turístico a otros lugares más cercanos e históricamente más visitados.</p>
+                    <p>Si quieres profundizar antes de viajar Nueva York, puedes comenzar leyendo su historia, conociendo sus cinco distritos, los principales barrios de Manhattan y los museos y puntos de interés más visitados. Además, con nuestra guía de Nueva York puedes seguir nuestros consejos sobre cómo ahorrar en Nueva York para sacarle el máximo partido a tus vacaciones.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/New-york-img.jpg' %} alt="Estatua de la Libertad">
+                </div>
+            </div>
+        </section>
+
+{% endblock content %}

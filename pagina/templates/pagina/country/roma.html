@@ -1,0 +1,42 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+        <section class="contenido">
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Roma, la Ciudad Eterna</h2>
+                    <p>Roma es conocida como la "Ciudad Eterna" porque en ella el tiempo parece haberse parado hace siglos. Sus monumentos y los restos de imponentes edificios hacen que un paseo por sus calles se convierta en un viaje en el tiempo hasta la época de máximo esplendor de la capital.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/roma-portada.avif' %} alt="Roma">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/roma2.jpeg' %} alt="Coliseo">
+                </div>
+                <div class="texto">
+                    <h2>¿Por qué viajar a Roma?</h2>
+                    <p>Con una larga e interesante historia a sus espaldas, Roma es una ciudad que atrae visitantes de todo el mundo gracias a sus impresionantes monumentos y restos arqueológicos procedentes de la Antigüedad.</p>
+                    <p>Existen infinidad de razones para visitar Roma, enamorarse de la ciudad y desear volver a ella. La gastronomía y su animado ambiente son algunas de ellas.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <p>Pasear por Roma no es solo recorrer una antigua ciudad repleta de restos arqueológicos; Roma es el recuerdo de los gladiadores luchando a vida o muerte en el Coliseo, las cuadrigas emprendiendo veloces carreras en el Circo Máximo, y también la visión de los sabios romanos paseando por el foro mientras conversaban sobre la democracia.</p>
+                    <p>Con más de 16 millones de visitantes anuales, el turismo en Roma es imparable. Se trata de la tercera ciudad europea que más visitantes atrae, por detrás de Londres y París, con la que mantiene una intensa lucha por el puesto de la ciudad más romántica de Europa.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/roma3.jpeg' %} alt="Foro Romano">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/roma4.jpeg' %} alt="Roma de noche">
+                </div>
+                <div class="texto">
+                    <p>Cada año más de dos millones de españoles viajan a Italia y eligen Roma como su ciudad preferida. Desde que las compañías de bajo coste comenzaron a ofrecer vuelos baratos a la capital italiana, esta cifra no ha parado de crecer y cada día son más personas las que deciden viajar a Roma.</p>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

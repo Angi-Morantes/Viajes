@@ -1,0 +1,67 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+    <div class="contenedor-articulos">
+        <h1>Planifica tu Viaje de Ensueño</h1>
+        <div class="seccion-articulos imagen-izquierda">
+            <div class="texto">
+                <h2>Antes de Empezar</h2>
+                <p>Antes de comenzar a planificar tu viaje, es importante definir tus objetivos y establecer un presupuesto.</p>
+                <ul>
+                    <li><strong>Define tus objetivos</strong>: ¿Qué tipo de viaje deseas? (relajación, aventura, cultura, etc.)</li>
+                    <li><strong>Establece un presupuesto</strong>: ¿Cuánto estás dispuesto a gastar?</li>
+                    <li><strong>Elige un destino</strong>: ¿A dónde quieres ir?</li>
+                </ul>
+            </div>
+            <img src={% static 'img/mapa2.jpg' %} alt="Mapa del mundo">
+        </div>
+        <div class="seccion-articulos imagen-derecha">
+            <div class="texto">
+                <h2>Investigación</h2>
+                <p>Una vez que hayas definido tus objetivos y establecido un presupuesto, es hora de investigar sobre tu destino.</p>
+                <ul>
+                    <li><strong>Investiga sobre el destino</strong>: Clima, cultura, costumbres, etc.</li>
+                    <li><strong>Lee reseñas y comentarios</strong>: De otros viajeros que hayan visitado el lugar.</li>
+                    <li><strong>Busca información sobre alojamiento y transporte</strong>: Hoteles, hostales, aeropuertos, etc.</li>
+                </ul>
+            </div>
+            <img src={% static 'img/consejos2.jpeg' %} alt="Investigación">
+        </div>
+        <div class="seccion-articulos imagen-izquierda">
+            <div class="texto">
+                <h2>Planificación</h2>
+                <p>Una vez que hayas investigado sobre tu destino, es hora de planificar tu viaje.</p>
+                <ul>
+                    <li><strong>Crea un itinerario</strong>: Planifica tus actividades y excursiones.</li>
+                    <li><strong>Reserva alojamiento y transporte</strong>: Con anticipación para evitar problemas.</li>
+                    <li><strong>Compra seguros de viaje</strong>: Para protegerte en caso de imprevistos.</li>
+                </ul>
+            </div>
+            <img src={% static 'img/consejos7.jpeg' %} alt="Planificación">
+        </div>
+        <div class="seccion-articulos imagen-derecha">
+            <div class="texto">
+                <h2>Preparación</h2>
+                <p>Antes de partir, es importante verificar los requisitos de visado, actualizar tus vacunas y preparar tu documentación.</p>
+                <ul>
+                    <li><strong>Verifica los requisitos de visado</strong>: Si es necesario para tu destino.</li>
+                    <li><strong>Actualiza tus vacunas</strong>: Si es necesario para tu destino.</li>
+                    <li><strong>Prepara tu documentación</strong>: Pasaporte, identificación, etc.</li>
+                </ul>
+            </div>
+            <img src={% static 'img/consejos.jpg' %} alt="Preparación">
+        </div>
+        <div class="seccion-articulos imagen-izquierda">
+            <div class="texto">
+                <h2>Durante el Viaje</h2>
+                <p>Durante el viaje, es importante mantener una copia de tus documentos importantes, mantener contacto con familiares y amigos, y disfrutar del viaje.</p>
+                <ul>
+                    <li><strong>Mantén una copia de tus documentos importantes</strong>: En caso de pérdida o robo.</li>
+                    <li><strong>Mantén contacto con familiares y amigos</strong>: Para que sepan que estás bien.</li>
+                    <li><strong>Disfruta del viaje</strong>: ¡Relájate y aprovecha al máximo!</li>
+                </ul>
+            </div>
+            <img src={% static 'img/consejos8.jpeg' %} alt="Disfrute">
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+        <section class="contenido">
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Barcelona, la Ciudad Condal</h2>
+                    <p>Situada a orillas del Mediterráneo, Barcelona es una ciudad cosmopolita con una gran importancia tanto cultural, como comercial, financiera y turística.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/barcelona-img.jpg' %} alt="Barcelona">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/barcelon.jpg' %} alt="Sagrada Familia">
+                </div>
+                <div class="texto">
+                    <h2>Turismo en Barcelona</h2>
+                    <p>Barcelona posee una impresionante oferta cultural, contando con algunos interesantes museos como la Fundación Joan Miró o el Museo Picasso, aunque donde se aprecia realmente el arte que envuelve la ciudad es paseando por sus calles llenas de historia y cargadas de encanto.</p>
+                    <p>Barcelona tuvo la enorme fortuna de caer en manos de Antonio Gaudí, un artista que dedicó sus años a llenar de vida y de magia la ciudad para enamorarnos a través de emblemáticas obras de arte como la conocidísima Sagrada Familia, el hermoso edificio modernista de La Pedrera o el sorprendente Parque Güell.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <p>Dejando de lado sus museos y monumentos, Barcelona no es sólo arte, sino que también posee un lado más relajado que se muestra en forma de soleadas playas que combinan a la perfección con una sugerente oferta gastronómica, detalles que convierten la Ciudad Condal en un auténtico paraíso para todo tipo de visitantes que deseen hacer turismo en Barcelona.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/barcelona2.jpg' %} alt="Playa de Barcelona">
+                </div>
+            </div>
+        </section>
+{% endblock content %}

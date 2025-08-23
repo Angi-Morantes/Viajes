@@ -1,0 +1,34 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+    <div class="contenedor-articulo">
+        <h1>Los Mejores Destinos de Playa en el Mundo</h1>
+        <section class="seccion-articulo">
+            <div class="lugar-p">
+                <img src={% static 'img/bora.jpeg' %} alt="Bora Bora">
+                <h2>1. Bora Bora (Polinesia Francesa)</h2>
+                <p>Un destino de lujo con aguas cristalinas y sobrecargas de lujo.</p>
+            </div>
+            <div class="lugar-p">
+                <img src={% static 'img/santorini.jpeg' %} alt="Santorini">
+                <h2>2. Santorini (Grecia)</h2>
+                <p>Con sus playas de arena negra y paisajes impresionantes.</p>
+            </div>
+            <div class="lugar-p">
+                <img src={% static 'img/cancun.jpeg' %} alt="Cancún">
+                <h2>3. Cancún (México)</h2>
+                <p>Con playas de arena blanca y aguas turquesas.</p>
+            </div>
+            <div class="lugar-p">
+                <img src={% static 'img/barbados.jpeg' %} alt="Barbados">
+                <h2>4. Barbados</h2>
+                <p>Con playas de arena blanca y aguas cristalinas.</p>
+            </div>
+            <div class="lugar-p">
+                <img src={% static 'img/hawai.jpeg' %} alt="Hawái">
+                <h2>5. Hawái (EE.UU.)</h2>
+                <p>Con playas de arena blanca y paisajes naturales impresionantes.</p>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

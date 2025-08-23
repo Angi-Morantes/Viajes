@@ -1,0 +1,34 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+    <div class="contenedor-articu">
+        <h1>Los Mejores Lugares para Practicar Deportes Extremos</h1>
+        <section class="seccion-articu">
+            <div class="lugar-d">
+                <img src={% static 'img/queeston.jpeg' %} alt="Queenstown">
+                <h2>1. Queenstown (Nueva Zelanda)</h2>
+                <p>Capital de los deportes extremos, con actividades como bungee jumping y paracaidismo.</p>
+            </div>
+            <div class="lugar-d">
+                <img src={% static 'img/costa-rica.jpeg' %} alt="Costa Rica">
+                <h2>2. Costa Rica</h2>
+                <p>Ideal para surf, kayak y tirolesa en bosques tropicales.</p>
+            </div>
+            <div class="lugar-d">
+                <img src={% static 'img/alpes.jpeg' %} alt="Los Alpes suizos">
+                <h2>3. Los Alpes suizos</h2>
+                <p>Oportunidades para ala delta, esquí y paracaidismo.</p>
+            </div>
+            <div class="lugar-d">
+                <img src={% static 'img/utah.jpeg' %} alt="Utah">
+                <h2>4. Utah (EE.UU.)</h2>
+                <p>Perfecto para descensos en mountain bike y ciclismo de ruta.</p>
+            </div>
+            <div class="lugar-d">
+                <img src={% static 'img/tasmania.jpeg' %} alt="Tasmania">
+                <h2>5. Tasmania (Australia)</h2>
+                <p>Ideal para kayak extremo y submarinismo.</p>
+            </div>
+        </section>
+    </div>
+{% endblock content %}

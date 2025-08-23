@@ -1,0 +1,33 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+        <section class="contenido">
+            <div class="bloque">
+                <div class="texto">
+                    <h2>¿Por qué visitar Londres?</h2>
+                    <p>Londres tiene algo que engancha y que a todo el mundo gusta. Londres es diversión, cultura, luces y color.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/londres2.jpg' %} alt="Londres">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/londres4.jpg' %} alt="Big Ben">
+                </div>
+                <div class="texto">
+                    <h2>Experiencias inolvidables</h2>
+                    <p>En Londres podrás sentirte pequeño junto al impresionante Big Ben, contemplar el mundo a tus pies desde el London Eye o presenciar el conocidísimo Cambio de Guardia frente al Palacio de Buckingham.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Turismo en Londres</h2>
+                    <p>Actualmente los vuelos de bajo coste hacen que la escasa distancia entre España y Londres sea cada vez más corta, convirtiéndolo en el destino perfecto para ir de compras o a un musical durante una escapada de fin de semana.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/londres5.jpg' %} alt="London Eye">
+                </div>
+            </div>
+        </section>
+{% endblock content %}

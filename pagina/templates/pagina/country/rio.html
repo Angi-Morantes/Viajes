@@ -1,0 +1,35 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+    <main>
+        <section class="contenido">
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Río de Janeiro, una ciudad vibrante</h2>
+                    <p>Río de Janeiro es una de las ciudades más visitadas por turistas extranjeros en Brasil. La ciudad tiene hermosas playas y atracciones turísticas conocidas como el Pan de Azúcar y el Cristo Redentor.</p>
+                </div>
+                <div class="imagen">
+                    <img src={%static 'img/rio2.jpg' %} alt="Río de Janeiro">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={%static 'img/rio3.jpg' %} alt="Playa Copacabana">
+                </div>
+                <div class="texto">
+                    <h2>Playas para todos los gustos</h2>
+                    <p>Hay playas para todos los gustos: playas amplias cercanas al centro, con mucha gente y playas recónditas, más alejadas y más chicas, para quienes prefieran tranquilidad.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Atracciones turísticas</h2>
+                    <p>Entre las más famosas están Copacabana, Ipanema, Leblon, Barra da Tijuca. Río es sinónimo de alegría, fiesta y carnaval, y además, es una ciudad llena de historia, modernidad, cultura y gastronomía.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/rio4.jpg' %} alt="Cristo Redentor">
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

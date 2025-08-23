@@ -1,0 +1,90 @@
+{% extends "pagina/global/base.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="contenedor-art">
+        <h1>Los Mejores Lugares para Visitar en América Latina</h1>
+        <section class="seccion-art">
+            <h2>Sitios Naturales</h2>
+            <div class="lugar-l">
+                <img src={% static 'img/machu-pichu.jpeg' %} alt="Machu Picchu">
+                <h3>Machu Picchu (Perú)</h3>
+                <p>La ciudad inca más famosa del mundo, considerada una de las 7 Maravillas del Mundo Moderno.</p>
+            </div>
+            <div class="lugar-l">
+                <img src={% static 'img/cataratas.jpeg' %} alt="Cataratas de Iguazú">
+                <h3>Cataratas de Iguazú (Brasil-Argentina)</h3>
+                <p>El sistema de cascadas más grande del mundo, con 275 cataratas.</p>
+            </div>
+            <div class="lugar-l">
+                <img src={% static 'img/salardeuyuni.jpeg' %} alt="Salar de Uyuni">
+                <h3>Salar de Uyuni (Bolivia)</h3>
+                <p>El salar más grande del mundo, con paisajes surrealistas y fotogénicos.</p>
+            </div>
+            <div class="lugar-l">
+                <img src="/imagenes/parque.jpeg" alt="Parque Nacional Torres del Paine">
+                <h3>Parque Nacional Torres del Paine (Chile)</h3>
+                <p>Un destino emblemático de la Patagonia chilena, con montañas, glaciares y ríos impresionantes.</p>
+            </div>
+            <div class="lugar-l">
+                <img src="/imagenes/desierto.jpeg" alt="Desierto de Atacama">
+                <h3>Desierto de Atacama (Chile)</h3>
+                <p>El desierto no polar más seco del mundo, con paisajes lunares y géiseres activos.</p>
+            </div>
+        </section>
+        <section class="seccion-art">
+            <h2>Ciudades Coloniales</h2>
+            <div class="lugar-l">
+                <img src={% static 'img/quito.jpeg' %} alt="Centro histórico de Quito">
+                <h3>Centro histórico de Quito (Ecuador)</h3>
+                <p>La capital más alta del mundo, con un centro histórico bien conservado y declarado Patrimonio Cultural de la Humanidad.</p>
+            </div>
+            <div class="lugar-l">
+                <img src={% static 'img/cartagena.jpeg' %} alt="Cartagena">
+                <h3>Cartagena (Colombia)</h3>
+                <p>Una ciudad colonial con fachadas coloridas, calles estrechas y una arquitectura impresionante.</p>
+            </div>
+            <div class="lugar-l">
+                <img src={% static 'img/lahabana.jpeg' %} alt="La Habana Vieja">
+                <h3>La Habana Vieja (Cuba)</h3>
+                <p>Una ciudad con un encanto retro y una rica historia, con vehículos antiguos y fachadas coloridas.</p>
+            </div>
+        </section>
+        <section class="seccion-art">
+            <h2>Islas y Playas</h2>
+            <div class="lugar-l">
+                <img src={% static 'img/galapagos.jpeg' %} alt="Islas Galápagos">
+                <h3>Islas Galápagos (Ecuador)</h3>
+                <p>Un archipiélago único con biodiversidad y paisajes volcánicos impresionantes.</p>
+            </div>
+            <div class="lugar-l">
+                <img src={% static 'img/riviera.jpeg' %} alt="Riviera Maya">
+                <h3>Riviera Maya (México)</h3>
+                <p>Una región costera con playas de ensueño, cenotes y ruinas mayas.</p>
+            </div>
+            <div class="lugar-l">
+                <img src={% static 'img/cayoscubanos.jpeg' %} alt="Cayos cubanos">
+                <h3>Cayos cubanos (Cuba)</h3>
+                <p>Islas con playas de ensueño y aguas cristalinas.</p>
+            </div>
+        </section>
+        <section class="seccion-art">
+            <h2>Montañas y Volcanes</h2>
+            <div class="lugar-l">
+        <img src={% static 'img/aconcagua.jpeg' %} alt="Aconcagua">
+        <h3>Aconcagua (Chile-Argentina)</h3>
+        <p>La montaña más alta del continente americano, con un desafío para los amantes de la aventura.</p>
+    </div>
+    <div class="lugar-l">
+        <img src={% static 'img/volcan.jpeg' %} alt="Volcán de Fuego">
+        <h3>Volcán de Fuego (Guatemala)</h3>
+        <p>Un volcán activo con paisajes impresionantes y una experiencia única.</p>
+    </div>
+    <div class="lugar-l">
+        <img src={% static 'img/vinicunca.jpeg' %} alt="Vinicunca">
+        <h3>Vinicunca (Perú)</h3>
+        <p>La montaña de siete colores, con un paisaje surrealista y una caminata desafiante.</p>
+    </div>
+    </section>
+    </div>
+{% endblock content %}

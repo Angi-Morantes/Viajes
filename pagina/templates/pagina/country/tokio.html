@@ -1,0 +1,33 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+<section class="contenido">
+<div class="bloque">
+    <div class="texto">
+    <h2>Tokio, la Ciudad más Poblada del Planeta</h2>
+    <p>Tokio es la ciudad más poblada del planeta, una megalópolis en cuya área metropolitana conviven más de 37 millones de personas.</p>
+</div>
+    <div class="imagen">
+    <img src={% static 'img/tokio4.webp' %} alt="Tokio">
+</div>
+</div>
+<div class="bloque reverse">
+<div class="imagen">
+    <img src={% static 'img/tokio2.jpeg' %} alt="Tokio de noche">
+</div>
+<div class="texto">
+    <h2>Por qué visitar Tokio</h2>
+    <p>Por su sorprendente cultura, por su animada vida nocturna, por probar su exótica gastronomía, por convivir con 35 millones de personas o por ir de compras en una de las ciudades más apropiadas para ello, cualquier razón es buena para viajar a Tokio.</p>
+</div>
+</div>
+<div class="bloque">
+<div class="texto">
+    <p>La fortaleza del euro durante los últimos años ha hecho que el turismo en Japón esté en auge. Cada año el número de españoles que visitan Japón aumenta a un ritmo de entre el 20 y el 50%, llegando a viajar más de 90.000 españoles al año.</p>
+    <p>Este dato aún queda muy lejos de los casi 400.000 japoneses que visitan España cada año.</p>
+</div>
+    <div class="imagen">
+    <img src={% static 'img/tokio1.jpeg' %} alt="Japón">
+    </div>
+</div>
+</section>
+{% endblock content %}

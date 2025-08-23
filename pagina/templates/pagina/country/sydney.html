@@ -1,0 +1,53 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+
+        <section class="contenido">
+            <div class="bloque">
+                <div class="texto">
+                    <h2>¿Por qué viajar a Sydney?</h2>
+                    <p>Sydney es una ciudad que ofrece una gran variedad de experiencias para todos los gustos. Desde playas espectaculares hasta compras, gastronomía y arte.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/sydney9.jpg' %} alt="Sydney">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/sydney4.jpg' %} alt="Playa Bondi">
+                </div>
+                <div class="texto">
+                    <h2>Playas espectaculares</h2>
+                    <p>Sydney tiene algunas de las playas más hermosas del mundo. Desde la famosa playa de Bondi hasta la playa de Manly, hay opciones para todos los gustos.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Compras</h2>
+                    <p>Sydney es un paraíso para los aficionados a las compras. Desde grandes centros comerciales hasta mercados y tiendas boutique, hay algo para todos.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/sydney3.jpg' %} alt="Compras en Sydney">
+                </div>
+            </div>
+            <div class="bloque reverse">
+                <div class="imagen">
+                    <img src={% static 'img/sydney2.jpg' %} alt="Gastronomía en Sydney">
+                </div>
+                <div class="texto">
+                    <h2>Gastronomía</h2>
+                    <p>Sydney ofrece una increíble oferta gastronómica, con mercados de alimentos frescos, restaurantes modernos y premiados.</p>
+                </div>
+            </div>
+            <div class="bloque">
+                <div class="texto">
+                    <h2>Actividades al aire libre</h2>
+                    <p>Sydney tiene un clima perfecto para disfrutar de actividades al aire libre, como excursiones, kayak y snorkel.</p>
+                </div>
+                <div class="imagen">
+                    <img src={% static 'img/sydney5.jpg' %} alt="Actividades al aire libre en Sydney">
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

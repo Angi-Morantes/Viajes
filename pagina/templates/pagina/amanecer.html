@@ -1,0 +1,46 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+
+    <div class="contenedor-articu">
+        <h1>Los Mejores Lugares para Ver el Amanecer o Atardecer</h1>
+        <section class="seccion-articu">
+            <div class="evento">
+                <img src={% static 'img/uluru.jpeg' %} alt="Uluru">
+                <div class="info-evento">
+                    <h2>1. Uluru (Ayers Rock), Australia</h2>
+                    <p>Amanecer impresionante sobre la formación de arenisca.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/santorin.jpeg' %} alt="Santorini">
+                <div class="info-evento">
+                    <h2>2. Santorini, Grecia</h2>
+                    <p>Atardecer sobre el mar Mediterráneo.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/machu-pichu.jpeg' %} alt="Machu Picchu">
+                <div class="info-evento">
+                    <h2>3. Machu Picchu, Perú</h2>
+                    <p>Amanecer mágico en la ciudadela inca.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/paris2.jpeg' %} alt="Torre Eiffel">
+                <div class="info-evento">
+                    <h2>4. Torre Eiffel, Francia</h2>
+                    <p>Atardecer sobre la Ciudad de la Luz.</p>
+                </div>
+            </div>
+            <div class="evento">
+                <img src={% static 'img/salardeuyuni.jpeg' %} alt="Salar de Uyuni">
+                <div class="info-evento">
+                    <h2>5. Salar de Uyuni, Bolivia</h2>
+                    <p>Atardecer impresionante en el desierto de sal.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock content %}
