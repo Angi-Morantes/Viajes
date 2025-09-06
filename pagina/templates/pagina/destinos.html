@@ -1,72 +1,46 @@
 {% extends "pagina/global/base.html" %}
-{%load static %}
+{% load static %}
 {% block content %}
-        <section id="destinos">
-            <h2>Destinos populares</h2>
-            <div class="destinos-grid">
-                <div class="destino" style="background-image: url('{% static 'img/paris1.jpeg' %}');">
-                    <div class="overlay">
-                        <h3>París</h3>
-                        <p>La ciudad de la luz y el amor</p>
-                        <a href='{% url 'paris' %}'>Ver más</a>
-                    </div>
-                </div>
-                <div class="destino" style="background-image: url('{% static 'img/roma1.jpeg' %}');">
-                    <div class="overlay">
-                        <h3>Roma</h3>
-                        <p>La ciudad eterna</p>
-                        <a href='{% url 'roma' %}'>Ver más</a>
-                    </div>
-                </div>
-                <div class="destino" style="background-image: url('{% static 'img/tokio1.jpeg' %}');">
-                    <div class="overlay">
-                        <h3>Tokio</h3>
-                        <p>La ciudad del futuro</p>
-                        <a href='{% url 'tokio' %}'>Ver más</a>
-                    </div>
-                </div>
-                <div class="destino" style="background-image: url('{% static 'img/New-york-img.jpg' %}');">
-                    <div class="overlay">
-                        <h3>Nueva York</h3>
-                        <p>La ciudad que nunca duerme</p>
-                        <a href='{% url 'nueva york' %}'>Ver más</a>
-                    </div>
-                </div>
-                <div class="destino" style="background-image: url('{% static 'img/barcelona-img.jpg' %}');">
-                    <div class="overlay">
-                        <h3>Barcelona</h3>
-                        <p>La ciudad de Gaudí</p>
-                        <a href='{% url 'barcelona' %}'>Ver más</a>
-                    </div>
-                </div>
-                <div class="destino" style="background-image: url('{% static 'img/syney-img.jpg' %}');">
-                    <div class="overlay">
-                        <h3>Sydney</h3>
-                        <p>La ciudad de la ópera</p>
-                        <a href='{% url 'sydney' %}'>Ver más</a>
-                    </div>
-                </div>
-            <div class="destino" style="background-image: url('{% static 'img/berlin-img.jpg' %}');">
-                <div class="overlay">
-                <h3>Berlín</h3>
-                <p>La ciudad de la historia y la cultura</p>
-                <a href='{% url 'berlin' %}'>Ver más</a>
-                </div>
-            </div>
-            <div class="destino" style="background-image: url('{% static 'img/Londres-img.jpg' %}');">
-                <div class="overlay">
-                <h3>Londres</h3>
-                <p>La ciudad de la corona británica</p>
-                <a href='{% url 'londres' %}'>Ver más</a>
-                </div>
-            </div>
-            <div class="destino" style="background-image: url('{% static 'img/rio1.jpg' %}');">
-                <div class="overlay">
-                <h3>Río de Janeiro</h3>
-                <p>La ciudad de las playas y el Carnaval</p>
-                <a href='{% url 'rio' %}'>Ver más</a>
-            </div>
-        </div>
+    <section id="destinos">
+        <h2>Destinos populares</h2>
 
-        </section>
+        <form method="GET" action="{% url 'destinos' %}">
+            <input type="text" name="q" placeholder="Buscar paises..."
+                   value="{{ query|default_if_none:'' }}">
+            <button type="submit">Buscar</button>
+        </form>
+        <br>
+
+        {% if countries %}
+            <div class="destinos-grid">
+                {% for country in countries %}
+                    {% include "pagina/partials/card_country.html" %}
+                {% empty %}
+                    <p>No hay paises</p>
+                {% endfor %}
+            </div>
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Siguiente</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% else %}
+            <p>No se encontraron paises para "{{ query }}"</p>
+        {% endif %}
+
+        <p>
+            <a href="{% url 'index' %}">Volver a la lista de paises</a>
+        </p>
+    </section>
 {% endblock content %}

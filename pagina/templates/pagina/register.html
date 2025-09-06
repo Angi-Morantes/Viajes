@@ -1,0 +1,32 @@
+{% extends "pagina/global/base.html" %}
+
+<section class="Post">
+
+    <for method="post" action="{% url 'register' %}">
+        <fieldset>
+            {% csrf_token %}
+
+            <label for="name">Nombre</label>
+            <input type="text" name="name" placeholder="Nombre" required>
+
+            <label for="email">Correo Electronico</label>
+            <input type="email" name="email" placeholder="Correo Electronico" required>
+
+            <label for="phone number">Numero telefonico</label>
+            <input type="text" name="phone" placeholder="Numero telefonico" required>  
+
+            <label for="adress">Dirección</label>
+            <input type="text" name="adress" placeholder="Direccion" required>
+
+            <label for="city">Ciudad</label>
+            <input type="text" name="city" placeholder="Ciudad" required>
+
+            <label for="country">Pais</label>
+            <input type="text" name="country" placeholder="Pais" required>
+
+            <label for='password'>Contraseña</label>
+            <input type="text" name="name" placeholder="Contraseña" required>
+
+            <button type="submit">Registrarse</button>
+
+</section>

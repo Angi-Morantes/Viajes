@@ -1,20 +1,68 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.views import View
+from pagina.models import *
+from django.db.models import Q
+from django.core.paginator import Paginator
+from django.contrib.auth import authenticate, login
+from pagina.forms import LoginForm
 
 # Create your views here.
 
 def index(request):
     return render(request, 'pagina/index.html')
 
-def destinos(request):
-    return render(request, 'pagina/destinos.html')
+# def destinos(request):
+#     return render(request, 'pagina/destinos.html')
 
 def articulos(request):
     return render(request, 'pagina/articulos.html') 
 
 def contacto(request):
     return render(request, 'pagina/contacto.html')
+
+class ContacView(View):
+    def get (self, request, *args, **kwargs):
+        pass
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+class RegisterView(View):
+    def get (self, request, *args, **kwargs):
+        pass
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+#---------------------------------------------------------------------
+# LoginView Iniciar Sesion
+#---------------------------------------------------------------------
+
+class UserLogin(View):
+    template_name= 'pagina/login.html'
+
+    def get(self, request, *args, **kwargs):
+        form = LoginForm()
+        return render(request, self.template_name, {'form': form})
+        
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username= form.cleaned_data['username']
+            password= form.cleaned_data['password']
+            user= authenticate(request, username=username, password= password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+            else:
+                return render(request, self.template_name, {
+                    'form': form,
+                    'error_message': 'Nombre de usuario o contraseña incorrectos'
+                })
+        return render(request, self.template_name, {'form': form})
+
 
 class Paris(View):
     def get(self, request):
@@ -75,3 +123,105 @@ class festival(View):
 class deportes(View):
     def get(self, request):
         return render(request, 'pagina/deportes.html')
+    
+#------------------------------------------------------------------------------------------------
+#create
+#-------------------------------------------------------------------------------------------------
+class CountryCreateView(View):
+    template_name= 'pagina/create/country_create.html'
+
+
+    def get (self, request, *args, **kwargs):
+
+        return render (request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        name= request.POST.get("name")
+        description= request.POST.get("description")
+        content = request.POST.get("content")
+        flag_photo= request.FILES.get("flag_photo")
+        iso_code= request.POST.get("iso_code")
+
+        new_country = Country.objects.create(
+            name= name,
+            description= description,
+            content = content, 
+            flag_photo = flag_photo,
+            iso_code = iso_code
+        )
+
+        return redirect('destinos')
+    
+
+class CountryListView(View):
+    template_name = 'pagina/destinos.html'
+    paginate_by= 3
+
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('q')
+        countries= Country.objects.all()
+        # return render(request, self.template_name, {'countries': countries})
+    
+        if query:
+            countries = countries.filter(
+                Q(name__icontains=query) |
+                Q(description__icontains=query) |
+                Q(iso_code__icontains=query)
+            ).distinct()
+
+        paginator = Paginator(countries, self.paginate_by)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context = {
+            'page_obj': page_obj,
+            'countries': page_obj.object_list,
+            'query': query
+        }
+        return render(request, self.template_name, context)
+
+#--------------------------------------------------------------------------------------------
+#detail
+#-------------------------------------------------------------------------------------------
+class CountryDetailView(View):
+    template_name = 'pagina/detail/country.html'
+
+    def get(self, request, id, *args, **kwargs):
+        country= get_object_or_404(Country, id=id)
+        return render(request, self.template_name, {'country': country})
+    
+#---------------------------------------------------------------------------------------------
+# Update 
+#--------------------------------------------------------------------------------------------
+
+class CountryUpdateView(View):
+    template_name = 'pagina/update/country_update.html'
+
+    def get(self, request, id, *args, **kwargs):
+        country = get_object_or_404(Country, id=id)
+        return render(request, self.template_name, {'country': country})
+
+    def post(self, request, id, *args, **kwargs):
+        country = get_object_or_404(Country, id=id)
+        country.name = request.POST.get("name")
+        country.description = request.POST.get("description")
+        country.content = request.POST.get("content")
+        country.flag_photo = request.FILES.get("flag_photo", country.flag_photo)
+        country.iso_code = request.POST.get("iso_code")
+        country.save()
+        return redirect('destinos')
+
+#----------------------------------------------------------------------------------------------
+#delete
+#---------------------------------------------------------------------------------------------
+class CountryDeleteView(View):
+    template_name = 'pagina/delete/country_delete.html'
+
+    def get(self, request, id, *args, **kwargs):
+        country= get_object_or_404(Country, id=id)
+        return render(request, self.template_name, {'country': country})
+
+    def post(self, request, id, *args, **kwargs):
+        country = get_object_or_404(Country, id=id)
+        country.delete()
+        return redirect('destinos')

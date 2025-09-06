@@ -1,0 +1,35 @@
+{% extends "pagina/global/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Actualizar país</h1>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" value="{{ country.name }}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" class="form-control">{{ country.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="content">Contenido:</label>
+        <textarea id="content" name="content" class="form-control">{{ country.content }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="flag_photo">Foto de la bandera:</label>
+        <input type="file" id="flag_photo" name="flag_photo" class="form-control-file">
+        {% if country.flag_photo %}
+        <img src="{{ country.flag_photo.url }}" alt="Bandera actual" width="100" height="100">
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="iso_code">Código ISO:</label>
+        <input type="text" id="iso_code" name="iso_code" value="{{ country.iso_code }}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{% url 'destinos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

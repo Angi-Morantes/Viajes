@@ -7,7 +7,7 @@
     {% block title %} <title>Viajes alrededor del mundo</title> {% endblock  %}
 
     <!-- favicon y CSS-->
-    <link rel="icon" href="/img/icono.jpg" type="image/x-icon">
+    <link rel="icon" href={% static 'img/icono.jpg' %} type="image/x-icon">
     <link rel="stylesheet" href="{% static "CSS/style.css" %}">
     {% block styles %} {% endblock styles %}
 
@@ -57,6 +57,14 @@
                     <h3>Destinos Populares</h3>
                     <ul>
                         <li><a href={% url 'paris' %}>París</a></li>
+                        <li><a href={% url 'roma' %}>Roma</a></li>
+                        <li><a href={% url 'londres' %}>Londres</a></li>
+                        <li><a href={% url 'tokio' %}>Tokio</a></li>
+                        <li><a href={% url 'berlin' %}>Berlin</a></li>
+                        <li><a href={% url 'barcelona' %}>Barcelona</a></li>
+                        <li><a href={% url 'rio' %}>Rio de Janeiro</a></li>
+                        <li><a href={% url 'nueva york' %}>Nueva York</a></li>
+                        <li><a href={% url 'sydney' %}>Sydney</a></li>
 
                     </ul>
                 </div>
