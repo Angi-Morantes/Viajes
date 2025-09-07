@@ -54,11 +54,11 @@ class Country(models.Model):
     def _str_(self):
         return self.name
 
-class Article(models.Model):
+class Articulo(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
-    publication_date = models.DateField()
-    update_date = models.DateField(auto_now=True)
+    description = models.TextField()
+    image = models.ImageField(upload_to='images')
+    places = models.JSONField(default=list)
 
     class Meta:
         db_table = "articles"
@@ -69,7 +69,7 @@ class Article(models.Model):
         return self.title
 
 class ArticleCountry(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     class Meta:
@@ -81,7 +81,7 @@ class ArticleCountry(models.Model):
         return f"{self.article.title} - {self.country.name}"
 
 class Review(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     date = models.DateField(auto_now_add=True)

@@ -32,11 +32,13 @@ urlpatterns = [
     #formularios
     path('create_profile/', ContacView.as_view(), name='create_profile' ),
     path('login/', UserLogin.as_view(), name='login'),
-    path('register/', RegisterView.as_view(), name='register'),
+    path('register/', UserRegisterView.as_view(), name='register'),
 
     #crud
     path('create/country/', CountryCreateView.as_view(), name= 'country_create'),
     path('detail-country/<int:id>', CountryDetailView.as_view(), name='country_detail'),
     path('destinos/<int:id>/update/', CountryUpdateView.as_view(), name='update_country'),
     path('destinos/<int:id>/delete/', CountryDeleteView.as_view(), name='delete_country'),
+    path('logout/', UserLogoutView.as_view(), name= 'logout'),
+
 ]

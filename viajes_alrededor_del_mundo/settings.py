@@ -134,3 +134,5 @@ AUTH_USER_MODEL= 'pagina.User'
 MEDIA_ROOT= BASE_DIR / 'media' #archivos multimedia
 
 MEDIA_URL= '/media/'  #configuracion para archivos multimedia (imagenes.videos)
+
+LOGIN_URL= '/login/'

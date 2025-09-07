@@ -4,9 +4,10 @@ from django.views import View
 from pagina.models import *
 from django.db.models import Q
 from django.core.paginator import Paginator
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model, logout
 from pagina.forms import LoginForm
-
+from .forms import RegisterForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def index(request):
@@ -28,12 +29,42 @@ class ContacView(View):
     def post(self, request, *args, **kwargs):
         pass
 
-class RegisterView(View):
-    def get (self, request, *args, **kwargs):
-        pass
+#----------------------------------------------------------------------------------------------
+#register
+#----------------------------------------------------------------------------------------------
+
+class UserRegisterView(View):
+    template_name = 'pagina/register.html'
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('index')
+        form = RegisterForm()
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
-        pass
+        if request.user.is_authenticated:
+            return redirect('index')
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            User = get_user_model()
+            user = User.objects.create_user(username=username, email=email, password=password)
+
+            login(request, user)
+
+            return redirect('destinos') 
+        return render(request, self.template_name, {'form': form})
+    
+
+class UserLogoutView(View):
+    
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect('login')
 
 #---------------------------------------------------------------------
 # LoginView Iniciar Sesion
@@ -43,10 +74,14 @@ class UserLogin(View):
     template_name= 'pagina/login.html'
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('destinos')
         form = LoginForm()
         return render(request, self.template_name, {'form': form})
         
     def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('destinos')
         form = LoginForm(request.POST)
         if form.is_valid():
             username= form.cleaned_data['username']
@@ -127,12 +162,11 @@ class deportes(View):
 #------------------------------------------------------------------------------------------------
 #create
 #-------------------------------------------------------------------------------------------------
-class CountryCreateView(View):
+class CountryCreateView(LoginRequiredMixin, View):
     template_name= 'pagina/create/country_create.html'
 
 
     def get (self, request, *args, **kwargs):
-
         return render (request, self.template_name)
 
     def post(self, request, *args, **kwargs):
@@ -153,14 +187,13 @@ class CountryCreateView(View):
         return redirect('destinos')
     
 
-class CountryListView(View):
+class CountryListView(LoginRequiredMixin, View):
     template_name = 'pagina/destinos.html'
     paginate_by= 3
 
     def get(self, request, *args, **kwargs):
         query = request.GET.get('q')
         countries= Country.objects.all()
-        # return render(request, self.template_name, {'countries': countries})
     
         if query:
             countries = countries.filter(
@@ -183,7 +216,7 @@ class CountryListView(View):
 #--------------------------------------------------------------------------------------------
 #detail
 #-------------------------------------------------------------------------------------------
-class CountryDetailView(View):
+class CountryDetailView(LoginRequiredMixin, View):
     template_name = 'pagina/detail/country.html'
 
     def get(self, request, id, *args, **kwargs):
@@ -194,7 +227,7 @@ class CountryDetailView(View):
 # Update 
 #--------------------------------------------------------------------------------------------
 
-class CountryUpdateView(View):
+class CountryUpdateView(LoginRequiredMixin, View):
     template_name = 'pagina/update/country_update.html'
 
     def get(self, request, id, *args, **kwargs):
@@ -214,7 +247,7 @@ class CountryUpdateView(View):
 #----------------------------------------------------------------------------------------------
 #delete
 #---------------------------------------------------------------------------------------------
-class CountryDeleteView(View):
+class CountryDeleteView(LoginRequiredMixin, View):
     template_name = 'pagina/delete/country_delete.html'
 
     def get(self, request, id, *args, **kwargs):
@@ -225,3 +258,5 @@ class CountryDeleteView(View):
         country = get_object_or_404(Country, id=id)
         country.delete()
         return redirect('destinos')
+
+

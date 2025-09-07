@@ -33,6 +33,13 @@
                             <li><a href={% url 'destinos' %}>Destinos</a></li>
                             <li><a href={% url 'articulos' %}>Articulos</a></li>
                             <li><a href={% url 'contacto' %}>Contacto</a></li>
+                            
+                        {% if user.is_authenticated %}
+                        <p>¡Hola, {{ user.username }}! <a href="{% url 'logout' %}">Cerrar Sesión</a></p>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Iniciar Sesión</a> |  <a href="{% url 'register' %}">Registrarse</a></li>
+                        {% endif %}
+
                         </ul>
                     </nav>
                 </div>
