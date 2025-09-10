@@ -1,43 +1,9 @@
 {% extends "pagina/global/base.html" %}
 {% load static %}
 {% block content %}
-
-    <main class="contenedor-articles">
-    <section class="articulo">
-            <img src={% static 'img/consejos.jpg' %} alt="Consejos para planificar un viaje">
-            <h2>Consejos para planificar un viaje</h2>
-            <p>Descubre los mejores consejos para planificar un viaje exitoso.</p>
-            <a href={% url 'consejos' %}>Leer más</a>
-        </section>
-        <section class="articulo">
-            <img src={% static 'img/america.jpg' %} alt="Los mejores lugares para visitar en América Latina">
-            <h2>Los mejores lugares para visitar en América Latina</h2>
-            <p>Descubre los mejores lugares para visitar en América Latina.</p>
-            <a href={% url 'america' %}>Leer más</a>
-        </section>
-        <section class="articulo">
-            <img src={% static 'img/playas.jpg' %} alt="Los mejores destinos de playa en el mundo">
-            <h2>Los mejores destinos de playa en el mundo</h2>
-            <p>Descubre los mejores destinos de playa en el mundo.</p>
-            <a href={% url 'playas' %}>Leer más</a>
-        </section>
-        <section class="articulo">
-            <img src={% static 'img/deportes.jpg' %} alt="Los mejores lugares para practicar deportes extremos">
-            <h2>Los mejores lugares para practicar deportes extremos</h2>
-            <p>Descubre los mejores lugares para practicar deportes extremos.</p>
-            <a href={% url 'deportes'%}>Leer más</a>
-        </section>
-        <section class="articulo">
-            <img src={% static 'img/festival.jpg' %} alt="Los mejores festivales y eventos culturales del mundo">
-            <h2>Los mejores festivales y eventos culturales del mundo</h2>
-            <p>Descubre los mejores festivales y eventos culturales del mundo.</p>
-            <a href={% url 'festivales' %}>Leer más</a>
-        </section>
-        <section class="articulo">
-            <img src={% static 'img/amanecer.jpg' %} alt="Los mejores lugares para ver el amanecer o el atardecer en el mundo">
-            <h2>Los mejores lugares para ver el amanecer o el atardecer en el mundo</h2>
-            <p>Descubre los mejores lugares para ver el amanecer o el atardecer en el mundo.</p>
-            <a href={% url 'amanecer' %}>Leer más</a>
-        </section>
-    </main>
+            {% for articulo in articles %}
+                    {% include "pagina/partials/card_articulo.html" %}
+                {% empty %}
+                    <p>No hay articulos</p>
+                {% endfor %}
 {% endblock content %}

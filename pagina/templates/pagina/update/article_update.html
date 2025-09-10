@@ -1,0 +1,31 @@
+{% extends "pagina/global/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Actualizar articulos</h1>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" value="{{ articulo.title }}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" class="form-control">{{ articulo.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="places">Lugares:</label>
+        <textarea id="places" name="places" class="form-control">{{ articulo.places }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Imagen:</label>
+        <input type="file" id="image" name="image" class="form-control-file">
+        {% if articulo.image %}
+        <img src="{{ articulo.image.url }}" alt="Imagen actual" width="100" height="100">
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{% url 'articulos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

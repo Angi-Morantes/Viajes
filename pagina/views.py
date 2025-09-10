@@ -16,8 +16,8 @@ def index(request):
 # def destinos(request):
 #     return render(request, 'pagina/destinos.html')
 
-def articulos(request):
-    return render(request, 'pagina/articulos.html') 
+# def articulos(request):
+#     return render(request, 'pagina/articulos.html') 
 
 def contacto(request):
     return render(request, 'pagina/contacto.html')
@@ -247,7 +247,7 @@ class CountryUpdateView(LoginRequiredMixin, View):
 #----------------------------------------------------------------------------------------------
 #delete
 #---------------------------------------------------------------------------------------------
-class CountryDeleteView(LoginRequiredMixin, View):
+class CountryDeleteView(View):
     template_name = 'pagina/delete/country_delete.html'
 
     def get(self, request, id, *args, **kwargs):
@@ -260,3 +260,67 @@ class CountryDeleteView(LoginRequiredMixin, View):
         return redirect('destinos')
 
 
+class ArticleCreateView(View):
+    template_name= 'pagina/create/article_create.html'
+
+    def get (self, request, *args, **kwargs):
+        return render (request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        image = request.FILES.get("image")
+        places = request.POST.get("places")
+
+        new_article = Articulo.objects.create(
+            title= title,
+            description= description,
+            image= image,
+            places=places
+        )
+
+        return redirect('articulos')
+
+class ArticleListView(View):
+    template_name = 'pagina/articulos.html'
+
+    def get(self, request, *args, **kwargs):
+        articles = Articulo.objects.all()
+        return render(request, self.template_name, {'articles': articles})
+    
+
+class ArticleDetailView(View):
+    template_name = 'pagina/detail/article.html'
+
+    def get(self, request, id, *args, **kwargs):
+        articulo= get_object_or_404(Articulo, id=id)
+        return render(request, self.template_name, {'articulo': articulo})
+
+class ArticleUpdateView(View):
+    template_name = 'pagina/update/article_update.html'
+
+    def get(self, request, id, *args, **kwargs):
+        articulo = get_object_or_404(Articulo, id=id)
+        return render(request, self.template_name, {'articulo': articulo})
+
+    def post(self, request, id, *args, **kwargs):
+        articulo = get_object_or_404(Articulo, id=id)
+        articulo.title = request.POST.get("title")
+        articulo.description = request.POST.get("description")
+        articulo.image = request.FILES.get("image", articulo.image)
+        articulo.places = request.POST.get("places")
+        articulo.save()
+        return redirect('articulos')
+    
+
+class ArticleDeleteView(View):
+    template_name = 'pagina/delete/article_delete.html'
+
+    def get(self, request, id, *args, **kwargs):
+        articulo= get_object_or_404(Articulo, id=id)
+        return render(request, self.template_name, {'articulo': articulo})
+
+    def post(self, request, id, *args, **kwargs):
+        articulo = get_object_or_404(Articulo, id=id)
+        articulo.delete()
+        return redirect('articulos')

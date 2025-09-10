@@ -7,7 +7,7 @@ from django.views import View
 urlpatterns = [
     path('', views.index, name='index'),
     path('destinos/', views.CountryListView.as_view(), name='destinos'),
-    path('articulos/', views.articulos, name='articulos'),
+    path('articulos/', views.ArticleListView.as_view(), name='articulos'),
     path('contacto/', views.contacto, name='contacto'),
 
     #destinos
@@ -33,12 +33,16 @@ urlpatterns = [
     path('create_profile/', ContacView.as_view(), name='create_profile' ),
     path('login/', UserLogin.as_view(), name='login'),
     path('register/', UserRegisterView.as_view(), name='register'),
+    path('logout/', UserLogoutView.as_view(), name='logout'),
 
     #crud
     path('create/country/', CountryCreateView.as_view(), name= 'country_create'),
     path('detail-country/<int:id>', CountryDetailView.as_view(), name='country_detail'),
     path('destinos/<int:id>/update/', CountryUpdateView.as_view(), name='update_country'),
     path('destinos/<int:id>/delete/', CountryDeleteView.as_view(), name='delete_country'),
-    path('logout/', UserLogoutView.as_view(), name= 'logout'),
+    path('create/article/', ArticleCreateView.as_view(), name= 'article_create'),
+    path('detail-article/<int:id>', ArticleDetailView.as_view(), name='articulo_detail'),
+    path('articulos/<int:id>/update/', ArticleUpdateView.as_view(), name='update_article'),
+    path('articulos/<int:id>/delete/', ArticleDeleteView.as_view(), name='delete_article'),
 
 ]

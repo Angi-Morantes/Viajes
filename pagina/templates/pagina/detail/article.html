@@ -1,0 +1,14 @@
+{% extends "pagina/global/base.html" %}
+{%load static %}
+{% block content %}
+    <div class="contenedor-articu">
+        <h1>{{articulo.title}}</h1>
+        <section class="seccion-articu">
+            <div class="evento">
+                <img src="{{articulo.image.url}}" alt="{{articulo.places}}">
+                <div class="info-evento">
+                    <h2>{{articulo.places}}</h2>
+                </div>
+            </div>
+
+{% endblock content %}

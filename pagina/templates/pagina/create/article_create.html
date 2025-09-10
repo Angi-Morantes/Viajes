@@ -1,0 +1,18 @@
+{% extends "pagina/global/base.html" %}
+{% block content %}
+{% load static %}
+        <section class="article_create">
+            <h2>Añadir articulo</h2>
+            <form method="post" action="{% url 'article_create' %}" enctype="multipart/form-data">
+                <fieldset>
+                    {% csrf_token %}
+
+                <input type="text" id="text" name="title" placeholder="Titulo del articulo" required>
+                <textarea id="description" name="description" placeholder="Descripcion" required></textarea>
+                <input type="file" name="image" id="image">
+                <input type="text" id="text" name="places" placeholder="Lugares" required>
+                <button type="submit">Enviar</button>
+        </fieldset>
+            </form>
+        </section>
+{% endblock content %}
