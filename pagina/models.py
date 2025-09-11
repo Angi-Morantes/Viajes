@@ -68,18 +68,6 @@ class Articulo(models.Model):
     def _str_(self):
         return self.title
 
-class ArticleCountry(models.Model):
-    article = models.ForeignKey(Articulo, on_delete=models.CASCADE)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = "article_countries"
-        verbose_name = 'País del artículo'
-        verbose_name_plural = 'Países de los artículos'
-
-    def _str_(self):
-        return f"{self.article.title} - {self.country.name}"
-
 class Review(models.Model):
     article = models.ForeignKey(Articulo, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
