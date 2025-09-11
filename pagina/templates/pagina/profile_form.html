@@ -1,0 +1,10 @@
+{% extends "pagina/global/base.html" %}
+
+{% block content %}
+<h1>Mi Perfil</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar Perfil</button>
+</form>
+{% endblock %}

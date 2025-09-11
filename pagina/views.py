@@ -6,8 +6,12 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, get_user_model, logout
 from pagina.forms import LoginForm
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileForm, ReviewForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from .models import Profile, Country, Articulo, Review
+from django.views.generic import CreateView
 # Create your views here.
 
 def index(request):
@@ -281,7 +285,7 @@ class ArticleCreateView(View):
 
         return redirect('articulos')
 
-class ArticleListView(View):
+class ArticleListView(LoginRequiredMixin, View):
     template_name = 'pagina/articulos.html'
 
     def get(self, request, *args, **kwargs):
@@ -289,15 +293,19 @@ class ArticleListView(View):
         return render(request, self.template_name, {'articles': articles})
     
 
-class ArticleDetailView(View):
+class ArticleDetailView(LoginRequiredMixin, View):
+    model = Articulo
     template_name = 'pagina/detail/article.html'
 
     def get(self, request, id, *args, **kwargs):
-        articulo= get_object_or_404(Articulo, id=id)
-        return render(request, self.template_name, {'articulo': articulo})
+        articulo = get_object_or_404(Articulo, id=id)
+        reviews = Review.objects.filter(article=articulo).order_by('-date')
+        print('Cantidad de reseñas encontradas:', reviews.count())
+        return render(request, self.template_name, {'articulo': articulo, 'reviews': reviews})
 
-class ArticleUpdateView(View):
-    template_name = 'pagina/update/article_update.html'
+
+class ArticleUpdateView(LoginRequiredMixin, View):
+    template_name = 'pagina/update/article_update.html'  
 
     def get(self, request, id, *args, **kwargs):
         articulo = get_object_or_404(Articulo, id=id)
@@ -313,14 +321,52 @@ class ArticleUpdateView(View):
         return redirect('articulos')
     
 
-class ArticleDeleteView(View):
+class ArticleDeleteView(LoginRequiredMixin, View):
     template_name = 'pagina/delete/article_delete.html'
 
     def get(self, request, id, *args, **kwargs):
-        articulo= get_object_or_404(Articulo, id=id)
-        return render(request, self.template_name, {'articulo': articulo})
-
+        articulo = get_object_or_404(Articulo, id=id)
+        reviews = Review.objects.filter(articulo=articulo).order_by('-date')
+        return render(request, self.template_name, {'articulo': articulo, 'reviews': reviews})
     def post(self, request, id, *args, **kwargs):
         articulo = get_object_or_404(Articulo, id=id)
         articulo.delete()
         return redirect('articulos')
+
+class ProfileView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'pagina/profile_form.html'
+    success_url = reverse_lazy('destinos')  # Ajusta según tus URLs
+
+    def get_object(self):
+        try:
+            return self.request.user.profile
+        except Profile.DoesNotExist:
+            return Profile.objects.create(user=self.request.user)
+        
+#---------------------------------------------------------------------------------------------
+#Creacion de reseñas
+#---------------------------------------------------------------------------------------------
+
+class CreateReviewView(LoginRequiredMixin, CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = 'pagina/create/create_review.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.article = get_object_or_404(Articulo, pk=kwargs['articulo_id'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.article = self.article
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['articulo'] = self.article
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('articulo_detail', kwargs={'id': self.article.id})

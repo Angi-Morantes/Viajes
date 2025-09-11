@@ -34,6 +34,8 @@ urlpatterns = [
     path('login/', UserLogin.as_view(), name='login'),
     path('register/', UserRegisterView.as_view(), name='register'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('article/<int:articulo_id>/review/', CreateReviewView.as_view(), name='create_review'),
 
     #crud
     path('create/country/', CountryCreateView.as_view(), name= 'country_create'),

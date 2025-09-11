@@ -11,4 +11,17 @@
                 </div>
             </div>
 
+            <h3>Reseñas</h3>
+    {% for review in reviews %}
+            <div class="reseña">
+                <strong>{{ review.user.username }}</strong> ({{ review.date }}):<br>
+                {{ review.text }}
+            </div>
+        {% empty %}
+            <p>No hay reseñas aún. ¡Sé el primero en escribir una!</p>
+        {% endfor %}
+
+            <a href="{% url 'create_review' articulo.id %}" class="btn btn-primary">Escribir Reseña</a>
+        </section>
+    </div>
 {% endblock content %}

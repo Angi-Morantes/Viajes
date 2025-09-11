@@ -1,0 +1,10 @@
+{% extends "pagina/global/base.html" %}
+{% block content %}
+<h2>Escribe una reseña sobre "{{ articulo.title }}"</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publicar reseña</button>
+</form>
+{% endblock %}

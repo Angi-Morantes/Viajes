@@ -1,6 +1,8 @@
 from django import forms 
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
+from django import forms
+from .models import Profile, User, Review
 
 class LoginForm(forms.Form):
     username= forms.CharField(
@@ -57,3 +59,24 @@ class RegisterForm(forms.Form):
             raise ValidationError("Las contraseñas no coinciden.")
         return cleaned_data
 
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'phone', 'country', 'photo']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'country': forms.TextInput(attrs={'class': 'form-control'}),
+            'photo': forms.FileInput(attrs={'class': 'form-control'}),
+        }
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['text']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Escribe tu reseña aquí...'}),
+        }

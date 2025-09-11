@@ -91,5 +91,5 @@ class Review(models.Model):
         verbose_name = 'Reseña'
         verbose_name_plural = 'Reseñas'
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.user.username}'s Reseña sobre {self.article.title}"
