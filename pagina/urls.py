@@ -35,7 +35,9 @@ urlpatterns = [
     path('register/', UserRegisterView.as_view(), name='register'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('article/<int:articulo_id>/review/', CreateReviewView.as_view(), name='create_review'),
+    path('perfiles/', views.ProfileDetailView.as_view(), name='profile_detail'),
+    path('profile/edit/', views.ProfileUpdateView.as_view(), name='profile_update'),
+
 
     #crud
     path('create/country/', CountryCreateView.as_view(), name= 'country_create'),
@@ -46,5 +48,8 @@ urlpatterns = [
     path('detail-article/<int:id>', ArticleDetailView.as_view(), name='articulo_detail'),
     path('articulos/<int:id>/update/', ArticleUpdateView.as_view(), name='update_article'),
     path('articulos/<int:id>/delete/', ArticleDeleteView.as_view(), name='delete_article'),
+    path('article/<int:articulo_id>/review/', CreateReviewView.as_view(), name='create_review'),
+    path('review/<int:pk>/update/', UpdateReviewView.as_view(), name='update_review'),
+    path('review/<int:pk>/delete/', DeleteReviewView.as_view(), name='delete_review'),
 
 ]

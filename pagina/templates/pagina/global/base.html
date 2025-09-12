@@ -36,6 +36,8 @@
                             {% if user.is_authenticated %}
                                 {% if not user.profile %}
                                     <li><a href="{% url 'profile' %}">Crear Perfil</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'profile_detail' %}" class="btn-ver-perfil">Ver Perfil</a></li>
                                 {% endif %}
                                 <li>
                                     <span style="display: inline-block; margin-right: 8px; vertical-align: middle;">¡Hola, {{ user.username }}!</span>

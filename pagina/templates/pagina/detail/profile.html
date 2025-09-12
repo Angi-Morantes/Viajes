@@ -1,16 +1,24 @@
+
 {% extends "pagina/global/base.html" %}
 {% block content %}
+{% load static %}
 <section class="profile-section">
-    <h1>Perfil de {{ profile.user.username }}</h1>
-    <p><strong>Nombre:</strong> {{ profile.first_name|default:"-" }}</p>
-    <p><strong>Apellido:</strong> {{ profile.last_name|default:"-" }}</p>
-    <p><strong>Teléfono:</strong> {{ profile.phone|default:"-" }}</p>
-    <p><strong>País:</strong> {{ profile.country|default:"-" }}</p>
-    {% if profile.photo %}
-        <img src="{{ profile.photo.url }}" alt="Foto de perfil" width="150">
-    {% else %}
-        <p>No hay foto de perfil.</p>
-    {% endif %}
-    <a href="{% url 'pagina:profile_update' %}" class="btn btn-primary">Editar Perfil</a>
+    <div class="profile-header">
+        {% if profile.photo %}
+            <img src="{{ profile.photo.url }}" alt="Foto de perfil" class="profile-photo">
+        {% else %}
+            <div class="profile-photo-placeholder">Sin foto</div>
+        {% endif %}
+        <h1>{{ profile.user.username }}</h1>
+    </div>
+    <div class="profile-info">
+        <p><strong>Nombre:</strong> {{ profile.first_name|default:"-" }}</p>
+        <p><strong>Apellido:</strong> {{ profile.last_name|default:"-" }}</p>
+        <p><strong>Teléfono:</strong> {{ profile.phone|default:"-" }}</p>
+        <p><strong>País:</strong> {{ profile.country|default:"-" }}</p>
+    </div>
+    <div class="profile-actions">
+        <a href="{% url 'profile_update' %}" class="btn btn-edit-profile">Editar Perfil</a>
+    </div>
 </section>
 {% endblock %}

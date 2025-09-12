@@ -16,6 +16,12 @@
             <div class="reseña">
                 <strong>{{ review.user.username }}</strong> ({{ review.date }}):<br>
                 {{ review.text }}
+                {% if user == review.user %}
+                    <div class="acciones-reseña">
+                        <a href="{% url 'update_review' review.id %}" class="btn btn-secondary">Editar</a>
+                        <a href="{% url 'delete_review' review.id %}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                {% endif %}
             </div>
         {% empty %}
             <p>No hay reseñas aún. ¡Sé el primero en escribir una!</p>

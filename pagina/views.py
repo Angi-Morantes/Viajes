@@ -7,8 +7,8 @@ from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, get_user_model, logout
 from pagina.forms import LoginForm
 from .forms import RegisterForm, ProfileForm, ReviewForm
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
 from .models import Profile, Country, Articulo, Review
 from django.views.generic import CreateView
@@ -347,7 +347,7 @@ class ArticleDeleteView(LoginRequiredMixin, View):
         articulo.delete()
         return redirect('articulos')
 
-class ProfileView(LoginRequiredMixin, UpdateView):
+class ProfileView(LoginRequiredMixin, View):
     model = Profile
     form_class = ProfileForm
     template_name = 'pagina/profile_form.html'
@@ -359,6 +359,34 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         except Profile.DoesNotExist:
             return Profile.objects.create(user=self.request.user)
         
+class ProfileDetailView(LoginRequiredMixin, DetailView):
+    model = Profile
+    template_name = 'pagina/detail/profile.html'
+    context_object_name = 'profile'
+
+    def get_object(self):
+        try:
+            return self.request.user.profile
+        except Profile.DoesNotExist:
+            return Profile.objects.create(user=self.request.user)
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'pagina/update/profile_update.html'
+    success_url = reverse_lazy('profile_detail')
+
+    def get_object(self):
+        try:
+            return self.request.user.profile
+        except Profile.DoesNotExist:
+            return Profile.objects.create(user=self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)  # Ver datos POST
+        print(request.FILES) # Ver archivos
+        return super().post(request, *args, **kwargs)
+
 #---------------------------------------------------------------------------------------------
 #Creacion de reseñas
 #---------------------------------------------------------------------------------------------
@@ -384,3 +412,32 @@ class CreateReviewView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse_lazy('articulo_detail', kwargs={'id': self.article.id})
+    
+# views.py
+class UpdateReviewView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = 'pagina/update/update_review.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        review = self.get_object()
+        return self.request.user == review.user
+
+    def get_success_url(self):
+        return reverse_lazy('articulo_detail', kwargs={'id': self.object.article.id})
+    
+
+class DeleteReviewView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Review
+    template_name = 'pagina/delete/delete_review.html'
+
+    def test_func(self):
+        review = self.get_object()
+        return self.request.user == review.user
+
+    def get_success_url(self):
+        return reverse_lazy('articulo_detail', kwargs={'id': self.object.article.id})

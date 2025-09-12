@@ -1,3 +1,68 @@
+
+.acciones-reseña {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px; /* Espacio entre botones */
+}
+
+.btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+.profile-section {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-info p {
+    margin: 10px 0;
+}
+.profile-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+.btn-edit-profile {
+    padding: 8px 16px;
+    background-color: #1877f2;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+.btn-edit-profile:hover {
+    background-color: #166fe5;
+}
+
 /* Buscador centrado y moderno para destinos */
 .buscador-centro {
 	display: flex;
