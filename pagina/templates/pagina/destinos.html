@@ -1,19 +1,21 @@
-
 {% extends "pagina/global/base.html" %}
 {% load static %}
 {% block content %}
+
     <section id="destinos">
         <h2>Destinos populares</h2>
 
-        <form method="GET" action="{% url 'destinos' %}">
-            <input type="text" name="q" placeholder="Buscar paises..."
-            value="{{ query|default_if_none:'' }}">
-            <button type="submit">Buscar</button>
-        </form>
+        <div class="buscador-centro">
+            <form method="GET" action="{% url 'destinos' %}" class="form-busqueda">
+                <input type="text" name="q" placeholder="Buscar paises..."
+                value="{{ query|default_if_none:'' }}" class="input-busqueda">
+                <button type="submit" class="btn-busqueda">Buscar</button>
+            </form>
+        </div>
         <br>
 
         {% if countries %}
-            <div class="destinos-grid">
+            <div class="destinos-carrusel">
                 {% for country in countries %}
                     {% include "pagina/partials/card_country.html" %}
                 {% empty %}
@@ -21,18 +23,18 @@
                 {% endfor %}
             </div>
 
-            <div class="pagination">
-                <span class="step-links">
+            <div class="pagination" style="display: flex; justify-content: center; align-items: center; margin-top: 2em;">
+                <span class="step-links" style="display: flex; gap: 2em; align-items: center;">
                     {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Anterior</a>
+                        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn btn-primary">Anterior</a>
                     {% endif %}
 
-                    <span class="current">
+                    <span class="current" style="font-weight: bold; color: #0057ff;">
                         Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
                     </span>
 
                     {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Siguiente</a>
+                        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn btn-primary">Siguiente</a>
                     {% endif %}
                 </span>
             </div>
@@ -40,9 +42,6 @@
             <p>No se encontraron paises para "{{ query }}"</p>
         {% endif %}
 
-        <p>
-            <a href="{% url 'index' %}">Volver a la lista de paises</a>
-        </p>
-
+    
     </section>
 {% endblock content %}

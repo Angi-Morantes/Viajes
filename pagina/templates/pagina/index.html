@@ -1,12 +1,15 @@
 {% extends "pagina/global/base.html" %}
 
 {% block content %}
-    <!--portada-->
-    <div class="container-cover">
-        <div class="container-info-cover">
+    <div class="portada-bg"></div>
+    <section class="hero-portada">
+        <div class="hero-portada-bg"></div>
+        <div class="hero-portada-overlay"></div>
+        <div class="hero-portada-content">
             <h1>Viajes alrededor del mundo</h1>
-            <p>¡Explora el mundo! Descubre nuevos lugares y culturas</p>
-            <a href={% url 'destinos' %}><button>Ver más</button></a>
+            <p>Explora destinos únicos, vive experiencias irreales y descubre el mundo a tu manera.</p>
+            <a href="{% url 'destinos' %}" class="hero-portada-btn">Ver destinos</a>
         </div>
-    </div>
+    </section>
+</div>
 {% endblock content %}

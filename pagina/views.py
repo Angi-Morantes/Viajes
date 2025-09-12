@@ -289,8 +289,22 @@ class ArticleListView(LoginRequiredMixin, View):
     template_name = 'pagina/articulos.html'
 
     def get(self, request, *args, **kwargs):
+        query = request.GET.get('q', '')
         articles = Articulo.objects.all()
-        return render(request, self.template_name, {'articles': articles})
+        if query:
+            articles = articles.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query) |
+                Q(places__icontains=query)
+            )
+        paginator = Paginator(articles, 2)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, self.template_name, {
+            'articles': page_obj.object_list,
+            'page_obj': page_obj,
+            'query': query
+        })
     
 
 class ArticleDetailView(LoginRequiredMixin, View):
@@ -326,7 +340,7 @@ class ArticleDeleteView(LoginRequiredMixin, View):
 
     def get(self, request, id, *args, **kwargs):
         articulo = get_object_or_404(Articulo, id=id)
-        reviews = Review.objects.filter(articulo=articulo).order_by('-date')
+        reviews = Review.objects.filter(article=articulo).order_by('-date')
         return render(request, self.template_name, {'articulo': articulo, 'reviews': reviews})
     def post(self, request, id, *args, **kwargs):
         articulo = get_object_or_404(Articulo, id=id)

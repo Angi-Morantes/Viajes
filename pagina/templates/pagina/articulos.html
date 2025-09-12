@@ -1,9 +1,36 @@
 {% extends "pagina/global/base.html" %}
 {% load static %}
 {% block content %}
-            {% for articulo in articles %}
-                    {% include "pagina/partials/card_articulo.html" %}
-                {% empty %}
-                    <p>No hay articulos</p>
-                {% endfor %}
+<section id="articulos">
+    <h2>Artículos</h2>
+    <div class="buscador-centro">
+        <form method="GET" action="{% url 'articulos' %}" class="form-busqueda">
+            <input type="text" name="q" placeholder="Buscar artículos..." value="{{ query|default_if_none:'' }}" class="input-busqueda">
+            <button type="submit" class="btn-busqueda">Buscar</button>
+        </form>
+    </div>
+    <br>
+    <div class="articulos-grid">
+        {% for articulo in articles %}
+            {% include "pagina/partials/card_articulo.html" with articulo=articulo %}
+        {% empty %}
+            <p>No hay artículos</p>
+        {% endfor %}
+    </div>
+    {% if page_obj %}
+    <div class="pagination" style="display: flex; justify-content: center; align-items: center; margin-top: 2em;">
+        <span class="step-links" style="display: flex; gap: 2em; align-items: center;">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn btn-primary">Anterior</a>
+            {% endif %}
+            <span class="current" style="font-weight: bold; color: #0057ff;">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}" class="btn btn-primary">Siguiente</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
+</section>
 {% endblock content %}

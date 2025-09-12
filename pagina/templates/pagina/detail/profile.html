@@ -1,0 +1,16 @@
+{% extends "pagina/global/base.html" %}
+{% block content %}
+<section class="profile-section">
+    <h1>Perfil de {{ profile.user.username }}</h1>
+    <p><strong>Nombre:</strong> {{ profile.first_name|default:"-" }}</p>
+    <p><strong>Apellido:</strong> {{ profile.last_name|default:"-" }}</p>
+    <p><strong>Teléfono:</strong> {{ profile.phone|default:"-" }}</p>
+    <p><strong>País:</strong> {{ profile.country|default:"-" }}</p>
+    {% if profile.photo %}
+        <img src="{{ profile.photo.url }}" alt="Foto de perfil" width="150">
+    {% else %}
+        <p>No hay foto de perfil.</p>
+    {% endif %}
+    <a href="{% url 'pagina:profile_update' %}" class="btn btn-primary">Editar Perfil</a>
+</section>
+{% endblock %}

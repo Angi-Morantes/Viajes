@@ -1,14 +1,15 @@
 {% extends "pagina/global/base.html" %}
 
 {% block content %}
-<section>
-    <h1>¿Estas seguro de que quieres eliminar "{{ country.name }}"? </h1>
-    <p>Esta accion no se puede deshacer. </p>
-
-    <form method="post" action="{% url 'delete_country' id=country.id %}">
-        {% csrf_token %}
-        <button type="submit" class="buttom-delete">Si,eliminar</button>
-        <a href="{% url 'country_detail' id=country.id %}" >No, cancelar</a>
+<section class="crud-form-section">
+    <div>
+        <h1>¿Estas seguro de que quieres eliminar "{{ country.name }}"? </h1>
+        <p>Esta acción no se puede deshacer. </p>
+        <form method="post" action="{% url 'delete_country' id=country.id %}">
+            {% csrf_token %}
+            <button type="submit" class="buttom-delete">Sí, eliminar</button>
+            <a href="{% url 'country_detail' id=country.id %}" >No, cancelar</a>
         </form>
-    </section>
+    </div>
+</section>
 {% endblock %}

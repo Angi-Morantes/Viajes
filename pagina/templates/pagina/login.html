@@ -1,6 +1,7 @@
 {% extends "pagina/global/base.html" %}
 {%block content %}{{block.super}}
 <section class="login-form-section">
+    <h1>Login</h1>
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         {{ form.as_p }}

@@ -1,10 +1,15 @@
 {% extends "pagina/global/base.html" %}
 {% block content %}
-<h2>Escribe una reseña sobre "{{ articulo.title }}"</h2>
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Publicar reseña</button>
-</form>
+<section class="review-form-section">
+    <div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
+        <div>
+            <h2>Escribe una reseña sobre "{{ articulo.title }}"</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Publicar reseña</button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

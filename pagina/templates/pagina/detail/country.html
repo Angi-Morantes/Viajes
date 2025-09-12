@@ -1,16 +1,15 @@
 {% extends "pagina/global/base.html" %}
-{%load static%}
+{% load static %}
 {% block content %}
-<section class="contenido">
-    <div class="bloque">
-        <div class="texto">
+<section class="country-info">
+    <div class="country-card">
+        <div class="country-img">
+            <img src="{{country.flag_photo.url}}" alt="{{country.name}}">
+        </div>
+        <div class="country-details">
             <h2>{{country.name}}</h2>
             <p>{{country.content}}</p>
         </div>
-    <div class="imagen">
-    <img src='{{country.flag_photo.url}}' alt="París">
-    </div>
     </div>
 </section>
-
 {% endblock content %}

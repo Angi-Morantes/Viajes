@@ -1,11 +1,10 @@
-
 {% load static%}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %} <title>Viajes alrededor del mundo</title> {% endblock  %}
+    {% block title %} <title>MunViajes</title> {% endblock  %}
 
     <!-- favicon y CSS-->
     <link rel="icon" href={% static 'img/icono.jpg' %} type="image/x-icon">
@@ -20,7 +19,7 @@
     <meta name="keywords" content="Viaje, libertad, alegria">
 
 </head>
-    <body>
+    <body class="{% if request.path == '/' %}no-scroll{% endif %}">
         <!--Header-menu-->
         <header>
             <div class="header-content">
@@ -28,63 +27,51 @@
                     <h1>Mun<b>VIAJE</b></h1>
                 </div>
                 <div class="menu">
-                    <nav>
-                        <ul>
+                    <div class="menu-principal">
+                        <nav>
+                            <ul>
                             <li><a href={% url 'index' %}>Inicio</a></li>
                             <li><a href={% url 'destinos' %}>Destinos</a></li>
                             <li><a href={% url 'articulos' %}>Articulos</a></li>
-                            <li><a href={% url 'contacto' %}>Contacto</a></li>
-                            
-                        {% if user.is_authenticated %}
-                        <p>¡Hola, {{ user.username }}! <a href="{% url 'logout' %}">Cerrar Sesión</a></p>
-                        {% else %}
-                        <li><a href="{% url 'login' %}">Iniciar Sesión</a> |  <a href="{% url 'register' %}">Registrarse</a></li>
-                        {% endif %}
+                            {% if user.is_authenticated %}
+                                {% if not user.profile %}
+                                    <li><a href="{% url 'profile' %}">Crear Perfil</a></li>
+                                {% endif %}
+                                <li>
+                                    <span style="display: inline-block; margin-right: 8px; vertical-align: middle;">¡Hola, {{ user.username }}!</span>
+                                    <a href="{% url 'logout' %}" style="display: inline-block; vertical-align: middle;">Cerrar Sesión</a>
+                                </li>
+                            {% else %}
+                                <li style="white-space: nowrap;">
+                                    <a href="{% url 'login' %}" style="display: inline-block;">Iniciar Sesión</a>
+                                    <span style="margin: 0 8px; color: #00c6ff; font-weight: bold;">|</span>
+                                    <a href="{% url 'register' %}" style="display: inline-block;">Registrarse</a>
+                                </li>
+                            {% endif %}
 
-                        </ul>
-                    </nav>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </header>
-    <main>
-    {% block content %} {% endblock content %}
-    </main>
+        {% block content %} {% endblock content %}
 
-        <footer>
-            <div class="contenedor-footer">
-                <div class="seccion-footer">
-                    <h3>Enlaces Rápidos</h3>
-                    <ul>
-                        <li><a href={% url 'index' %}>Inicio</a></li>
-                        <li><a href={% url 'destinos' %}>Destinos</a></li>
-                        <li><a href={% url 'articulos' %}>Articulos</a></li>
-                        <li><a href={% url 'contacto' %}>Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="seccion-footer">
-                    <h3>Destinos Populares</h3>
-                    <ul>
-                        <li><a href={% url 'paris' %}>París</a></li>
-                        <li><a href={% url 'roma' %}>Roma</a></li>
-                        <li><a href={% url 'londres' %}>Londres</a></li>
-                        <li><a href={% url 'tokio' %}>Tokio</a></li>
-                        <li><a href={% url 'berlin' %}>Berlin</a></li>
-                        <li><a href={% url 'barcelona' %}>Barcelona</a></li>
-                        <li><a href={% url 'rio' %}>Rio de Janeiro</a></li>
-                        <li><a href={% url 'nueva york' %}>Nueva York</a></li>
-                        <li><a href={% url 'sydney' %}>Sydney</a></li>
-
-                    </ul>
-                </div>
-                <div class="seccion-footer">
-                    <h3>Contacto</h3>
-                    <p>¿Tienes alguna pregunta o comentario? No dudes en contactarnos.</p>
-                    <p>Email:[mun.viajes@gmail.com]</p>
-                </div>
-            </div>
-            <div class="pie-de-pagina">
-                <p>&copy; 2025 [MunViajes]. Todos los derechos reservados.</p>
-            </div>
-        </footer>
+<footer>
+    <div class="contenedor-footer">
+        <div class="seccion-footer" style="text-align:center;">
+            <h3 style="color:#00c6ff;">MunViajes</h3>
+            <p>Explora el mundo, comparte experiencias y encuentra tu próximo destino favorito.</p>
+            <p>
+                <a href="mailto:mun.viajes@gmail.com" style="color:#00c6ff; text-decoration:none;">
+                    mun.viajes@gmail.com
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="pie-de-pagina" style="text-align: center; width: 100%;">
+        <p style="margin: 0; color: #466777; font-size: 1em;">&copy; 2025 MunViajes</p>
+    </div>
+</footer>
     </body>
 </html>

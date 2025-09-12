@@ -1,10 +1,11 @@
 {% load static %}
-{% if country.flag_photo %}
-<div class="destino" style="background-image: url('{{country.flag_photo.url}}');">
-    <div class="overlay">
-        <h3>{{country.name}}</h3>
-        <p>{{country.description}}</p>
-        <a href="{% url 'country_detail' country.id  %}">Ver más</a>
+<div class="pais-card pastel-card">
+    {% if country.flag_photo %}
+        <img src="{{country.flag_photo.url}}" alt="{{country.name}}" class="pastel-img">
+    {% endif %}
+    <div class="pastel-content">
+        <h3 class="pastel-title">{{country.name}}</h3>
+        <p class="pastel-desc">{{country.description}}</p>
+        <a href="{% url 'country_detail' country.id  %}" class="pastel-btn">Ver más</a>
     </div>
 </div>
-{% endif %}

@@ -1,17 +1,19 @@
 {% extends "pagina/global/base.html" %}
 {% block content %}
-{% load static %}
-
-        <section class="contacto">
-            <h2>Añadir pais</h2>
-            <form method="post" action="{% url 'country_create' %}" enctype="multipart/form-data">
-                <fieldset>
-                    {% csrf_token %}
-
+<section class="crud-form-section">
+    <div>
+        <h2>Añadir país</h2>
+        <form method="post" action="{% url 'country_create' %}" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
                 <input type="text" id="name" name="name" placeholder="Nombre" required>
-                <textarea id="description" name="description" placeholder="Descripcion" required></textarea>
+                <textarea id="description" name="description" placeholder="Descripción" required></textarea>
                 <textarea id="content" name="content" placeholder="Contenido" required></textarea>
                 <input type="file" name="flag_photo" id="flag_photo">
-                <input type="text" id="iso_code" name="iso_code" placeholder="Codigo iso" required>
+                <input type="text" id="iso_code" name="iso_code" placeholder="Código ISO" required>
                 <button type="submit">Enviar</button>
+            </fieldset>
+        </form>
+    </div>
+</section>
 {% endblock content %}

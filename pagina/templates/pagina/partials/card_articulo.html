@@ -1,11 +1,11 @@
 {% load static %}
 {% if articulo.image %}
-    <main class="contenedor-articles">
-    <section class="articulo">
-            <img src="{{articulo.image.url}}" alt="{{articulo.title}}">
+    <div class="articulo-card">
+        <img src="{{articulo.image.url}}" alt="{{articulo.title}}" class="articulo-img">
+        <div class="articulo-content">
             <h2>{{articulo.title}}</h2>
             <p>{{articulo.description}}</p>
             <a href="{% url 'articulo_detail' articulo.id  %}">Leer más</a>
-    </section>
-    </main>
+        </div>
+    </div>
 {% endif %}
