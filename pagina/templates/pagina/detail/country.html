@@ -6,10 +6,18 @@
         <div class="country-img">
             <img src="{{country.flag_photo.url}}" alt="{{country.name}}">
         </div>
+        
         <div class="country-details">
             <h2>{{country.name}}</h2>
             <p>{{country.content}}</p>
+            <div>
+            <a href="{% url 'update_country' country.id  %}" class="pastel-btn">Actualizar pais</a>
+            
+            <a href="{% url 'delete_country' country.id %}" class="pastel-btn">Eliminar pais</a>
+            </div>
         </div>
     </div>
+
 </section>
+
 {% endblock content %}

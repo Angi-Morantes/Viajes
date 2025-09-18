@@ -8,9 +8,11 @@
                 <img src="{{articulo.image.url}}" alt="{{articulo.places}}">
                 <div class="info-evento">
                     <h2>{{articulo.places}}</h2>
+                    
                 </div>
             </div>
-
+            <a href="{% url 'update_article' articulo.id  %}" class="pastel-btn">Actualizar articulo</a>
+            <a href="{% url 'delete_article' articulo.id %}" class="pastel-btn">Eliminar articulo</a>
             <h3>Reseñas</h3>
     {% for review in reviews %}
             <div class="reseña">

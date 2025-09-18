@@ -3,7 +3,6 @@
 {% block content %}
 
     <section id="destinos">
-        <h2>Destinos populares</h2>
 
         <div class="buscador-centro">
             <form method="GET" action="{% url 'destinos' %}" class="form-busqueda">
@@ -13,6 +12,7 @@
             </form>
         </div>
         <br>
+                        <a href="{% url 'country_create'  %}" class="pastel-btn">Crear pais</a>
 
         {% if countries %}
             <div class="destinos-carrusel">
@@ -22,7 +22,6 @@
                     <p>No hay paises</p>
                 {% endfor %}
             </div>
-
             <div class="pagination" style="display: flex; justify-content: center; align-items: center; margin-top: 2em;">
                 <span class="step-links" style="display: flex; gap: 2em; align-items: center;">
                     {% if page_obj.has_previous %}

@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 <section id="articulos">
-    <h2>Artículos</h2>
     <div class="buscador-centro">
         <form method="GET" action="{% url 'articulos' %}" class="form-busqueda">
             <input type="text" name="q" placeholder="Buscar artículos..." value="{{ query|default_if_none:'' }}" class="input-busqueda">
@@ -10,6 +9,7 @@
         </form>
     </div>
     <br>
+    <a href="{% url 'article_create'  %}" class="pastel-btn">Crear articulos</a>
     <div class="articulos-grid">
         {% for articulo in articles %}
             {% include "pagina/partials/card_articulo.html" with articulo=articulo %}
